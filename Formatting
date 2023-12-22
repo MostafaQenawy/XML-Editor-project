@@ -1,0 +1,169 @@
+/* Name: Mohaned Khaled Hassan
+ * ID: 2001372
+ * Date: 22/12/2023
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool hasOpenTag(string &line) {
+    size_t pos = line.find('<');
+    return pos != string::npos && line[pos + 1] != '/';
+}
+
+bool hasCloseTag(string &line) {
+    size_t pos = line.find("</");
+    return pos != string::npos;
+}
+
+string removeLeadingSpaces(string str) {
+    // Find the first non-space character
+    size_t pos = str.find_first_not_of(' ');
+
+    // Erase leading spaces
+    if (pos != string::npos) {
+        str.erase(0, pos);
+    } else {
+        // If the string is all spaces, clear the string
+        str.clear();
+    }
+    return str;
+}
+
+void formatting(string &input){
+    istringstream iss(input);
+    string line;
+    int flag = 0;
+    int spaces = 0;
+
+    while (getline(iss, line)) {
+        int i;
+        string newLine = removeLeadingSpaces(line);
+        bool hasOpen = hasOpenTag(newLine);
+        bool hasClose = hasCloseTag(newLine);
+
+
+        if (hasOpen && hasClose) {
+            if (flag == 2) {
+                spaces++;
+            }
+            flag = 3;
+
+        } else if (hasOpen) {
+            if (flag == 2) {
+                spaces++;
+            }
+            flag = 2;
+        } else if (hasClose) {
+            spaces--;
+            flag = 1;
+        } else {
+            if (flag == 2) {
+                spaces++;
+            }
+            flag = 0;
+        }
+
+        i = spaces;
+        string space = "\t";
+        // space = space.substr(0,1);
+        if (i > 0) {
+            while (i--) {
+                newLine.insert(0,space);
+            }
+        }
+
+        input.replace(input.find(line), line.length(), newLine);
+    }
+}
+
+
+//Test Function
+int main() {
+    string input = "<users>\n"
+                   "      <user>\n"
+                   "                                    <id>1</id>\n"
+                   "                             <name>Ahmed Ali</name>\n"
+                   "        <posts>\n"
+                   "                           <post>\n"
+                   "                                     <body>\n"
+                   "                    Lorem ipsu ex ea commodo consequat.\n"
+                   "                                            </body>\n"
+                   "                                                             <topics>\n"
+                   "                    <topic>\n"
+                   "                            economy\n"
+                   "                      </topic>\n"
+                   "    <topic>\n"
+                   "                        finance\n"
+                   "       </topic>\n"
+                   "                </topics>\n"
+                   "    </post>\n"
+                   "      <post>\n"
+                   "     <body>\n"
+                   "        Lorem ipsquip ex ea commodo consequat.\n"
+                   "                                </body>\n"
+                   "  <topics>\n"
+                   "     <topic>\n"
+                   "                                 solar_energy\n"
+                   "     </topic>\n"
+                   "                </topics>\n"
+                   "    </post>\n"
+                   "        </posts>\n"
+                   "                               <followers>\n"
+                   "            <follower>\n"
+                   "                 <id>2</id>\n"
+                   "            </follower>\n"
+                   "                                  <follower>\n"
+                   "                <id>3</id>\n"
+                   "            </follower>\n"
+                   "        </followers>\n"
+                   "    </user>\n"
+                   "    <user>\n"
+                   "        <id>2</id>\n"
+                   "                                     <name>Yasser Ahmed</name>\n"
+                   "        <posts>\n"
+                   "            <post>\n"
+                   "                                  <body>\n"
+                   "                    Lorem ipsum dolor sit\n"
+                   "                                                 </body>\n"
+                   "                <topics>\n"
+                   "                    <topic>\n"
+                   "                        education\n"
+                   "                    </topic>\n"
+                   "                </topics>\n"
+                   "                                                      </post>\n"
+                   "        </posts>\n"
+                   "        <followers>\n"
+                   "                                               <follower>\n"
+                   "                <id>1</id>\n"
+                   "                                          </follower>\n"
+                   "                                                            </followers>\n"
+                   "  </user>\n"
+                   "    <user>\n"
+                   "                          <id>3</id>\n"
+                   "        <name>Mohamed Sherif</name>\n"
+                   "        <posts>\n"
+                   "            <post>\n"
+                   "                <body>\n"
+                   "                    Lorem ipsum dolor\n"
+                   "       </body>\n"
+                   "       <topics>\n"
+                   "      <topic>\n"
+                   "                        sports\n"
+                   "                    </topic>\n"
+                   "                </topics>\n"
+                   "            </post>\n"
+                   "        </posts>\n"
+                   "        <followers>\n"
+                   "            <follower>\n"
+                   "                <id>1</id>\n"
+                   "            </follower>\n"
+                   "        </followers>\n"
+                   "    </user>\n"
+                   "</users>\n";
+
+    formatting(input);
+
+    cout << input;
+    return 0;
+}
