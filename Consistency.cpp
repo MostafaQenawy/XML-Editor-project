@@ -136,27 +136,29 @@ string getTagValue(const string& tag) {
 }
 
 
-bool consistency_checker(const string& opent, const string& closedt, stack<string>& s) {
-    // Check if opent is not "FALSE" and push it onto the stack
-    if (opent != "FALSE") {
+bool consistency_checker(string opent, string closedt, stack <string>& s)
+{
+    if (opent.compare("FALSE"))
+    {
         s.push(opent);
     }
-
-    // Check if closedt is not "FALSE" and stack is not empty
-    if (closedt != "FALSE" && !s.empty()) {
-        // If closedt matches the top of the stack, pop the stack
-        if (closedt == s.top()) {
-            s.pop();
-        } else {
-            // If not matching, return false
+    if (closedt.compare("FALSE"))
+    {
+        if (!s.empty())
+        {
+            if (!closedt.compare(s.top()))
+                s.pop();
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
             return false;
         }
-    } else {
-        // If closedt is "FALSE" or stack is empty, return false
-        return false;
+        return true;
     }
-
-    // Return true if no inconsistency is found
     return true;
 }
 
