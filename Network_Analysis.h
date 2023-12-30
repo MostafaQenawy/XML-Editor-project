@@ -5,15 +5,13 @@
 
 using namespace std;
 
-void mostInfluencerUser(vector<User> users);
+string mostInfluencerUser(vector<User> users);
 
-void mostActiveUser(vector<User> users);
+string mostActiveUser(vector<User> users);
 
-void mutualFollowers(vector<User> users);
+string mutualFollowers(vector<User> users);
 
-void SuggestedFollowers(vector<User> users);
+string SuggestedFollowers(vector<User> users);
 
 
 #endif // Network_Analysis
-
-
