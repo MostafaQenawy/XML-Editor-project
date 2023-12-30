@@ -1,22 +1,24 @@
 #include "Network_Analysis.h"
 
-void mostInfluencerUser(vector<User> users){
+string mostInfluencerUser(vector<User> users){
     int temp;
     int count = 0 ;
     string influncer;
+    string result ;
     for (User user : users)
         if (user.followers.size() > count )
         {
             count = user.followers.size();
             influncer = user.name;
         }
-    cout << "The Most influncer user is " << influncer << endl;
-    return;
+     result = "The Most influncer user is " + influncer + "\n";
+    return result;
 }
 
-void mostActiveUser(vector<User> users){
+string mostActiveUser(vector<User> users){
     vector<int> idfollowers;
     int count[15] = {0};
+    string result;
     int temp =0 ;
     int id ;
     for (User user : users)
@@ -41,13 +43,14 @@ void mostActiveUser(vector<User> users){
     }
     for (User user : users)
         if(id == user.ID)
-            cout << "The Most Active user is " << user.name << endl;
-    return;
+            result = "The Most Active user is " + user.name + "\n";
+    return result;
 }
 
-void mutualFollowers(vector<User> users){
+string mutualFollowers(vector<User> users){
     vector<int> idfollowers;
     int count[15] = {0};
+    string result;
     int temp =0 ;
     int id ;
     for (User user : users)
@@ -64,66 +67,54 @@ void mutualFollowers(vector<User> users){
         }
     for(int i = 0 ; i < 15; i++)
     {
-        int z = 1 ;
+
         if(count[i] > 1)
         {
             for (User user : users)
                 if(i == user.ID)
-                    cout << user.name << " is mutual friend for :" << endl ;
+                    result += user.name + " is mutual friend for :\n" ;
             for (User user : users)
                 for(int followerID: user.followers)
                     if(i == followerID)
-                        cout << z++ << " : " << user.name << endl;
+                        result +=  " - " + user.name + "\n";
         }
     }
 
-    return;
+    return result;
 }
 
-void SuggestedFollowers(vector<User> users){
+string mutualFollowers(vector<User> users){
     vector<int> idfollowers;
+    int count[15] = {0};
+    string result;
+    int temp =0 ;
+    int id ;
     for (User user : users)
-    {
         for(int followerID: user.followers)
-            for (User follower : users)
+        {
+            auto it = find(idfollowers.begin(),idfollowers.end(), followerID);
+            if(it != idfollowers.end())
+                count[followerID] = count[followerID]+ 1;
+            else
             {
-                if(followerID == follower.ID)
-                    for(int followerOfFollowers: follower.followers)
-                    {
-                        auto it = find(idfollowers.begin(),idfollowers.end(), followerOfFollowers);
-                        if(it == idfollowers.end() && followerOfFollowers != user.ID)
-                            idfollowers.push_back(followerOfFollowers);
-                    }
+                idfollowers.push_back(followerID);
+                count[followerID] = 1 ;
             }
+        }
+    for(int i = 0 ; i < 15; i++)
+    {
 
-        int z =0 ;
-        int x =1 ;
-        for(int i = 0 ; i < idfollowers.size() ;i++)
+        if(count[i] > 1)
         {
-            int flag = 0;
-            for(int ID : user.followers)
-                if( idfollowers[i] == ID)
-                    flag = 1 ;
-            if (!flag)
-            {
-                for(User follower : users)
-                    if(idfollowers[i] == follower.ID)
-                    {
-                        if(!z)
-                        {
-                            z++;
-                            cout <<  "  ..............." << user.name <<"..............\n"<< endl;
-                        }
-                        cout <<  x++ << " - suggested friend : " << follower.name << "\n" << endl;
-                    }
-            }
+            for (User user : users)
+                if(i == user.ID)
+                    result += user.name + " is mutual friend for :\n" ;
+            for (User user : users)
+                for(int followerID: user.followers)
+                    if(i == followerID)
+                        result +=  " - " + user.name + "\n";
         }
-        if (z == 0)
-        {
-            cout <<  "................. " << user.name <<" ..............\n" << endl;
-            cout <<  "                 No suggestion            \n" << endl;
-        }
-        idfollowers.clear();
     }
-    return;
+
+    return result;
 }
