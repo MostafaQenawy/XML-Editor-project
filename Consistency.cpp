@@ -305,34 +305,3 @@ string printError(const vector<err_dataa>& error_vector) {
 
     return ss.str();
 }
-
-int main() {
-    string fileLocation = "F:\\Data Structure\\sample.xml";
-    vector<string> xmlVector = fileToVector(fileLocation);
-    vector<err_dataa> errorVector;
-
-    bool isConsistent = check_consistency(xmlVector, errorVector);
-    if (isConsistent) {
-        cout << "XML is consistent. All tags are properly closed." << endl;
-    } else {
-        cout << "XML is inconsistent. There are issues with tag closures." << endl;
-        cout << printError(errorVector);
-    }
-
-    vector<err_dataa> detectedErrors = detect_error(xmlVector);
-    if (detectedErrors.empty()) {
-        cout << "No errors detected in XML tags." << endl;
-    } else {
-        cout << "Errors detected in XML tags:" << endl;
-        cout << printError(detectedErrors);
-    }
-
-    vector<string> correctedVector = error_corrector(xmlVector, detectedErrors);
-
-    cout << "Corrected XML or error messages:" << endl;
-    for (const string& line : correctedVector) {
-        cout << line << endl;
-    }
-
-    return 0;
-}
