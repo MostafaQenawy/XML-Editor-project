@@ -28,13 +28,13 @@ XML (Extensible Markup Language) serves as a fundamental format for data exchang
 7. [Graph](#graph)
 
 ## Contribution
-Mohaned Khaled Hassan Hassan      2001372<br>
-Rana Amr AbdelNaby AbdelGawad     2000256.
-Salma Yasser AbdElMageed Meckawy  20P7211.
-Mostafa Hessin Ahmed Qenawy       2000931.
-Sara Yasser AbdelMageed Meckawy   20P8099.
-Shawky Ahmad Shawky ElSayed       2002020.
-Youssef Bekhit Narouz             2101913.
+Mohaned Khaled Hassan Hassan &nbsp;&nbsp;&nbsp;&nbsp; 2001372 <br>
+Rana Amr AbdelNaby AbdelGawad &nbsp;&nbsp;&nbsp;&nbsp; 2000256<br>
+Salma Yasser AbdElMageed Meckawy &nbsp;&nbsp;&nbsp;&nbsp; 20P7211<br>
+Mostafa Hessin Ahmed Qenawy &nbsp;&nbsp;&nbsp;&nbsp; 2000931<br>
+Sara Yasser AbdelMageed Meckawy &nbsp;&nbsp;&nbsp;&nbsp; 20P8099<br>
+Shawky Ahmad Shawky ElSayed &nbsp;&nbsp;&nbsp;&nbsp; 2002020<br>
+Youssef Bekhit Narouz &nbsp;&nbsp;&nbsp;&nbsp; 2101913<br>
 
 ## Demo Video
 https://github.com/YoussefMArco/DS_project/assets/127995481/7c5eadee-3a0b-47a2-aacb-36d8769d70fd
