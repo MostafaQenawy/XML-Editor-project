@@ -1,6 +1,6 @@
 # XML Editor_project
 
-## Discription
+# Discription
 
 # Table of Contents
 1. [Minify](#minify)
