@@ -1,6 +1,8 @@
-# DS_project
-# Table of Contents
+# XML Editor_project
 
+## Discription
+
+# Table of Contents
 1. [Minify](#minify)
 2. [XML Consistency](#xml-consistency)
 3. [XML Text Format](#xml-text-format)
