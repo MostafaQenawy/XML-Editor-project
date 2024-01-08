@@ -1,4 +1,4 @@
-  # XML Editor_project
+# ________XML Editor_project________
 
 ## Discription
 This project aims to develop a GUI-based program to parse, visualize, and analyze XML files representing users in a social network. The tool performs various operations on XML data, ensuring consistency, formatting, conversion to JSON, compression, and graph-based network analysis.
@@ -37,3 +37,4 @@ Shawky Ahmad Shawky ElSayed       2002020
 Youssef Bekhit Narouz             2101913
 
 ## Demo Video
+https://github.com/YoussefMArco/DS_project/assets/127995481/7c5eadee-3a0b-47a2-aacb-36d8769d70fd
