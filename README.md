@@ -7,7 +7,7 @@ This project aims to develop a GUI-based program to parse, visualize, and analyz
 XML (Extensible Markup Language) serves as a fundamental format for data exchange among devices. This project targets the development of a robust GUI program capable of handling XML files representing social network users. By parsing and visualizing this data, the tool offers insights into network structures and supports various transformations of the XML content.
 
 ## Features
-  #### 1. XML Consistency Check: Detects and resolves inconsistencies in XML files.
+1. XML Consistency Check: Detects and resolves inconsistencies in XML files.
 2. XML Formatting: Ensures well-formatted XML through indentation.
 3. XML to JSON Conversion: Transforms XML data into JSON format.
 4. XML Minification: Reduces file size by removing whitespaces and newlines.
