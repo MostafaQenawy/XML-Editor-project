@@ -82,3 +82,51 @@ string mutualFollowers(vector<User> users){
 
     return result;
 }
+
+void SuggestedFollowers(vector<User> users){
+    vector<int> idfollowers;
+    for (User user : users)
+    {
+        for(int followerID: user.followers)
+            for (User follower : users)
+            {
+                if(followerID == follower.ID)
+                    for(int followerOfFollowers: follower.followers)
+                    {
+                        auto it = find(idfollowers.begin(),idfollowers.end(), followerOfFollowers);
+                        if(it == idfollowers.end() && followerOfFollowers != user.ID)
+                            idfollowers.push_back(followerOfFollowers);
+                    }
+            }
+
+        int z =0 ;
+        int x =1 ;
+        for(int i = 0 ; i < idfollowers.size() ;i++)
+        {
+            int flag = 0;
+            for(int ID : user.followers)
+                if( idfollowers[i] == ID)
+                    flag = 1 ;
+            if (!flag)
+            {
+                for(User follower : users)
+                    if(idfollowers[i] == follower.ID)
+                    {
+                        if(!z)
+                        {
+                            z++;
+                            cout <<  "  ..............." << user.name <<"..............\n"<< endl;
+                        }
+                        cout <<  x++ << " - suggested friend : " << follower.name << "\n" << endl;
+                    }
+            }
+        }
+        if (z == 0)
+        {
+            cout <<  "................. " << user.name <<" ..............\n" << endl;
+            cout <<  "                 No suggestion            \n" << endl;
+        }
+        idfollowers.clear();
+    }
+    return;
+}
