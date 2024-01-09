@@ -272,29 +272,33 @@ vector<string> error_corrector(const vector<string>& xml_vector, const vector<er
      if (i == error_vector[counter].err_loc) {
          if (error_vector[counter].err_type.size() > 25) {
              corrected_vector.push_back(replace_str(xml_vector[i], getClosedTag(xml_vector[i]), getOpenTag(xml_vector[i])));
-         } else {
-             corrected_vector.push_back("<"+xml_vector[i]);
-         }
-
-         if (counter < error_vector.size() - 1) {
+         } else if (counter < error_vector.size() - 1) {
              counter++;
-         }
+         } // Append missing opening tags
+    else if(!s.empty()) {
+    while (counter< xml_vector.size()) {
+        size_t precedingStart = xml_vector[counter].rfind("<" + s.top() + ">");
+              corrected_vector.pop_back();
+              corrected_vector.pop_back();
+            // Check if s.top() is found at the correct position
+                string openingTag = "<" + s.top() + ">";
+                corrected_vector.push_back(openingTag);
+                s.pop();
+                 corrected_vector.push_back(xml_vector[i-1]);
+                 corrected_vector.push_back(xml_vector[i]);
+                break; // Move to the next item in the stack after successfully finding and adding the opening tag
+            }
+
+        counter++;
+    }
      } else {
          corrected_vector.push_back(xml_vector[i]);
      }
  }
 
- // Append missing closing tags
- while (!s.empty()) {
-     string closingTag = "</" + s.top() + ">";
-     corrected_vector.push_back(closingTag);
-     s.pop();
- }
 
- return corrected_vector;
+    return corrected_vector;
 }
-
-
 
 string printError(const vector<err_dataa>& error_vector) {
     stringstream ss;
