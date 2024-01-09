@@ -49,7 +49,7 @@ string mostActiveUser(vector<User> users){
 
 string mutualFollowers(vector<User> users){
     vector<int> idfollowers;
-    int count[15] = {0};
+    int count[30] = {0};
     string result;
     int temp =0 ;
     int id ;
@@ -65,43 +65,7 @@ string mutualFollowers(vector<User> users){
                 count[followerID] = 1 ;
             }
         }
-    for(int i = 0 ; i < 15; i++)
-    {
-
-        if(count[i] > 1)
-        {
-            for (User user : users)
-                if(i == user.ID)
-                    result += user.name + " is mutual friend for :\n" ;
-            for (User user : users)
-                for(int followerID: user.followers)
-                    if(i == followerID)
-                        result +=  " - " + user.name + "\n";
-        }
-    }
-
-    return result;
-}
-
-string mutualFollowers(vector<User> users){
-    vector<int> idfollowers;
-    int count[15] = {0};
-    string result;
-    int temp =0 ;
-    int id ;
-    for (User user : users)
-        for(int followerID: user.followers)
-        {
-            auto it = find(idfollowers.begin(),idfollowers.end(), followerID);
-            if(it != idfollowers.end())
-                count[followerID] = count[followerID]+ 1;
-            else
-            {
-                idfollowers.push_back(followerID);
-                count[followerID] = 1 ;
-            }
-        }
-    for(int i = 0 ; i < 15; i++)
+    for(int i = 0 ; i < 30; i++)
     {
 
         if(count[i] > 1)
